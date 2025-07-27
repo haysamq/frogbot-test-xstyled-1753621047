@@ -1,0 +1,7 @@
+node_modules/
+/coverage/
+dist/
+package.json
+CHANGELOG.md
+.cache
+public/

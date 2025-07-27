@@ -1,0 +1,149 @@
+---
+section: Transitions
+title: Transition Duration
+slug: /docs/transition-duration/
+---
+
+# Transition Duration
+
+Utilities for controlling the duration of CSS transitions.
+
+<carbon-ad />
+
+| React props                     | CSS Properties                     |
+| ------------------------------- | ---------------------------------- |
+| `transitionDuration={duration}` | `transition-duration: {duration};` |
+
+## Usage
+
+Use `transitionDuration={duration}` utilities to control an element's transition-duration.
+
+```jsx preview color=fuchsia
+<>
+  <template preview>
+    <x.div display="flex" justifyContent="space-around" alignItems="center">
+      <x.button
+        fontWeight="medium"
+        transition
+        transitionDuration="instant"
+        color="white"
+        bg={{ _: 'fuchsia-600', hover: 'red-600' }}
+        py={3}
+        px={6}
+        borderRadius="md"
+        border={0}
+      >
+        Hover me
+      </x.button>
+      <x.button
+        fontWeight="medium"
+        transition
+        transitionDuration="fast-in"
+        color="white"
+        bg={{ _: 'fuchsia-600', hover: 'red-600' }}
+        py={3}
+        px={6}
+        borderRadius="md"
+        border={0}
+      >
+        Hover me
+      </x.button>
+      <x.button
+        fontWeight="medium"
+        transition
+        transitionDuration={700}
+        color="white"
+        bg={{ _: 'fuchsia-600', hover: 'red-600' }}
+        py={3}
+        px={6}
+        borderRadius="md"
+        border={0}
+      >
+        Hover me
+      </x.button>
+      <x.button
+        fontWeight="medium"
+        transition
+        transitionDuration="3s"
+        color="white"
+        bg={{ _: 'fuchsia-600', hover: 'red-600' }}
+        py={3}
+        px={6}
+        borderRadius="md"
+        border={0}
+      >
+        Hover me
+      </x.button>
+    </x.div>
+  </template>
+  <x.button transition transitionDuration="instant">
+    Hover me
+  </x.button>
+  <x.button transition transitionDuration="fast-in">
+    Hover me
+  </x.button>
+  <x.button transition transitionDuration={700}>
+    Hover me
+  </x.button>
+  <x.button transition transitionDuration="3s">
+    Hover me
+  </x.button>
+</>
+```
+
+## Responsive
+
+To control an element's transition-duration at a specific breakpoint, use responsive object notation. For example, adding the property `transitionDuration={{ md: 300 }}` to an element would apply the `transitionDuration={300}` utility at medium screen sizes and above.
+
+```jsx
+<x.div transitionDuration={{ md: 300 }} />
+```
+
+For more information about xstyled's responsive design features, check out [Responsive Design](/docs/responsive-design/) documentation.
+
+## Customizing
+
+import CustomizeDurations from '../../../partials/customizing/durations.mdx'
+
+<CustomizeDurations />
+
+## Styled bindings
+
+### Automatic
+
+Using xstyled's `styled`, all transition properties defined are automatically bound to `transition-property` attribute:
+
+```js
+import styled from '@xstyled/...'
+
+const Button = styled.button`
+  transition-duration: fast-in;
+`
+```
+
+To learn more about styled syntax, read [styled syntax documentation](/docs/magic-styled-components/).
+
+### Manual
+
+It is possible to manually bind a transition property using `th.duration` utility:
+
+```js
+import styled from '...'
+import { th } from '@xstyled/...'
+
+const Switch = styled.radio`
+  transition: opacity ${th.duration('instant')};
+`
+```
+
+## Hooks
+
+Get a transition property in any component using `useDuration` hook:
+
+```js
+import { useDuration } from '@xstyled/...'
+
+function Button() {
+  const duration = useDuration('fast-out')
+}
+```

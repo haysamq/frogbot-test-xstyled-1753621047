@@ -1,0 +1,248 @@
+---
+section: Core Concepts
+title: Hover, Focus, & Other States
+slug: /docs/hover-focus-other-states/
+order: 4
+---
+
+# Hover, Focus, & Other States
+
+Using utilities to style elements on hover, focus, and more.
+
+<carbon-ad />
+
+Every prop utilities accepts an object to style hover, focus and other states.
+
+```jsx preview color=purple
+<>
+  <template preview>
+    <x.form display="flex" w="full" maxWidth="sm" mx="auto" spaceX={3}>
+      <x.input
+        flex="1 0 0"
+        appearance="none"
+        border
+        borderColor={{ _: 'transparent', focus: 'transparent' }}
+        w="full"
+        py={2}
+        px={4}
+        bg="white"
+        color={{ _: 'gray-700', placeholder: 'gray-400' }}
+        boxShadow="md"
+        borderRadius="lg"
+        fontSize="base"
+        outline={{ focus: 'none' }}
+        ring={{ focus: 2 }}
+        ringColor={{ focus: 'purple-600' }}
+        type="email"
+        placeholder="Your email"
+      />
+      <x.button
+        type="button"
+        flexShrink={0}
+        bg={{ _: 'purple-600', hover: 'purple-700' }}
+        color="white"
+        fontSize="base"
+        fontWeight="semibold"
+        py={2}
+        px={4}
+        borderRadius="lg"
+        boxShadow="md"
+        outline={{ focus: 'none' }}
+        ring={{ focus: 2 }}
+        ringColor={{ focus: 'purple-500' }}
+      >
+        Sign up
+      </x.button>
+    </x.form>
+  </template>
+  <form>
+    <x.input
+      border
+      borderColor="transparent"
+      outline={{ focus: 'none' }}
+      ring={{ focus: 2 }}
+      ringColor={{ focus: 'purple-600' }}
+      border={{ focus: 'transparent' }}
+    />
+    <x.button
+      bg={{ _: 'purple-600', hover: 'purple-700' }}
+      outline={{ focus: 'none' }}
+      ring={{ focus: 2 }}
+      ringColor={{ focus: 'purple-600-a50' }}
+    >
+      Sign up
+    </x.button>
+  </form>
+</>
+```
+
+State objects are available for all utilities.
+
+## Hover
+
+Add the `hover` state to only apply a utility on hover.
+
+```jsx preview color=red
+<>
+  <template preview>
+    <x.div textAlign="center">
+      <x.button
+        type="button"
+        py={2}
+        px={4}
+        bg={{ _: 'red-500', hover: 'red-700' }}
+        color="white"
+        fontWeight="semibold"
+        borderRadius="lg"
+        boxShadow="md"
+        outline={{ focus: 'none ' }}
+        tabindex="-1"
+      >
+        Hover me
+      </x.button>
+    </x.div>
+  </template>
+  <x.button bg={{ _: 'red-500', hover: 'red-700' }}>Hover me</x.button>
+</>
+```
+
+## Using reponsive states
+
+States and breakpoints can be seemlessly mixed, every screens defined in theme are a `@media (min-width: ...)` state.
+
+```jsx preview color=fuchsia
+<>
+  <template preview>
+    <x.div textAlign="center">
+      <x.button
+        type="button"
+        py={2}
+        px={4}
+        bg={{
+          _: { _: 'indigo-500', hover: 'indigo-700' },
+          md: { _: 'fuchsia-500', hover: 'fuchsia-700' },
+        }}
+        color="white"
+        fontWeight="semibold"
+        borderRadius="lg"
+        boxShadow="md"
+        outline={{ focus: 'none ' }}
+        tabindex="-1"
+      >
+        Cameleon button
+      </x.button>
+    </x.div>
+  </template>
+  <x.button
+    bg={{
+      _: { _: 'indigo-500', hover: 'indigo-700' },
+      md: { _: 'fuchsia-500', hover: 'fuchsia-700' },
+    }}
+  >
+    Cameleon button
+  </x.button>
+</>
+```
+
+## Combined states
+
+Use nested objects to combine states.
+
+```jsx preview color=indigo
+<>
+  <template preview>
+    <x.div textAlign="center">
+      <x.a
+        href="#"
+        color={{
+          _: 'indigo-500',
+          hover: 'indigo-600',
+          visited: { hover: 'indigo-900' },
+        }}
+      >
+        Link
+      </x.a>
+    </x.div>
+  </template>
+  <x.a
+    href="#"
+    color={{
+      _: 'indigo-500',
+      hover: 'indigo-600',
+      visited: { hover: 'indigo-900' },
+    }}
+  >
+    Link
+  </x.a>
+</>
+```
+
+## Inline states
+
+Inline your states and breakpoints, `&:hover` works just like the default theme `hover` state.
+
+```jsx preview color=indigo
+<>
+  <template preview>
+    <x.div textAlign="center">
+      <x.a
+        href="#inline-states"
+        color={{
+          '&': 'indigo-500',
+          '&:hover': 'indigo-600',
+          '&[href^="#"]': { '&': 'green-500', '&:hover': 'green-600' },
+        }}
+      >
+        Link
+      </x.a>
+    </x.div>
+  </template>
+  <x.a
+    href="#inline-states"
+    color={{
+      '&': 'indigo-500',
+      '&:hover': 'indigo-600',
+      '&[href^="#"]': { '&': 'green-500', '&:hover': 'green-600' },
+    }}
+  >
+    Link
+  </x.a>
+</>
+```
+
+## Available states
+
+Default theme includes a set of useful states.
+
+| State Prefix   | CSS Scope                                        |
+| -------------- | ------------------------------------------------ |
+| `motionSafe`   | `@media (prefers-reduced-motion: no-preference)` |
+| `motionReduce` | `@media (prefers-reduced-motion: reduce)`        |
+| `first`        | `&:first-child`                                  |
+| `last`         | `&:last-child`                                   |
+| `odd`          | `&:odd`                                          |
+| `even`         | `&:even`                                         |
+| `visited`      | `&:visited`                                      |
+| `checked`      | `&:checked`                                      |
+| `hover`        | `&:hover`                                        |
+| `focus`        | `&:focus`                                        |
+| `focusVisible` | `&:focus-visible`                                |
+| `focusWithin`  | `&:focus-within`                                 |
+| `active`       | `&:active`                                       |
+| `disabled`     | `&:disabled, &[aria-disabled=true]`              |
+| `placeholder`  | `&::placeholder`                                 |
+
+## Customizing states
+
+You can completely customize states in your theme:
+
+```js
+// theme.js
+
+export const theme = {
+  states: {
+    firstLetter: '&::first-letter',
+    dark: '.xstyled-color-mode-dark &&',
+  },
+}
+```
